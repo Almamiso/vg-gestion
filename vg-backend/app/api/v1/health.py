@@ -12,4 +12,4 @@ def healthcheck(db: Session = Depends(get_db)):
     db.execute(text("SELECT 1"))
     r = Redis.from_url(settings.redis_url)
     r.ping()
-    return {"status": "ok", "message": "auto-deploy-1"}
+    return {"status": "ok", "message": "auto-deploy-2"}
