@@ -1,0 +1,7 @@
+primary_region = "cdg"
+
+[build]
+dockerfile = "docker/Dockerfile.worker"
+
+[processes]
+worker = "celery -A app.workers.celery_app worker -l info"

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vg-backend"
+version = "0.1.0"
+description = "VG Gestion Backend"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "pydantic>=2",
+  "pydantic-settings",
+  "sqlalchemy>=2.0",
+  "psycopg[binary]",
+  "alembic",
+  "redis",
+  "celery",
+  "python-jose[cryptography]",
+  "httpx",
+  "aiohttp",
+  "opentelemetry-sdk",
+  "opentelemetry-instrumentation-fastapi",
+  "prometheus-client",
+  "python-json-logger",
+  "pyjwt",
+]
+
+[project.optional-dependencies]
+dev = ["pytest","pytest-asyncio","ruff","mypy","black","httpx"]

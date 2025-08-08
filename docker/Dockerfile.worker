@@ -1,0 +1,19 @@
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /code
+
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential curl && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt /code/
+RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
+
+COPY vg-backend /code/vg-backend
+COPY alembic.ini /code/vg-backend/
+COPY alembic /code/vg-backend/alembic
+
+WORKDIR /code/vg-backend
+
+CMD ["celery", "-A", "app.workers.celery_app", "worker", "-l", "info"]
